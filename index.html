@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三家の雫 - The best taste, proven by the history of noble families.</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Yu Mincho', 'MS Mincho', serif;
+            color: #e5e5e5;
+            background-color: #000000;
+        }
+        .hero-bg {
+            background: linear-gradient(to bottom, #0a0a0a, #000000);
+        }
+        .section-title {
+            letter-spacing: 0.075em;
+            font-weight: 300;
+        }
+        .divider {
+            width: 4rem;
+            height: 1px;
+            background-color: rgba(217, 119, 6, 0.4);
+            margin: 1.5rem 0;
+        }
+        .divider-center {
+            width: 4rem;
+            height: 1px;
+            background-color: rgba(217, 119, 6, 0.4);
+            margin: 1.5rem auto;
+        }
+        .frame-corner {
+            width: 2rem;
+            height: 2rem;
+            position: absolute;
+        }
+        .frame-corner.top-left {
+            top: -1rem;
+            left: -1rem;
+            border-top: 2px solid #d97706;
+            border-left: 2px solid #d97706;
+        }
+        .frame-corner.top-right {
+            top: -1rem;
+            right: -1rem;
+            border-top: 2px solid #d97706;
+            border-right: 2px solid #d97706;
+        }
+        .frame-corner.bottom-left {
+            bottom: -1rem;
+            left: -1rem;
+            border-bottom: 2px solid #d97706;
+            border-left: 2px solid #d97706;
+        }
+        .frame-corner.bottom-right {
+            bottom: -1rem;
+            right: -1rem;
+            border-bottom: 2px solid #d97706;
+            border-right: 2px solid #d97706;
+        }
+        .tab-button {
+            padding: 1rem 2rem;
+            font-size: 0.875rem;
+            color: #78716c;
+            transition: all 0.3s;
+        }
+        .tab-button:hover {
+            color: #d97706;
+        }
+        .tab-button.active {
+            color: #d97706;
+            border-bottom: 2px solid #d97706;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .product-tag {
+            color: #d97706;
+            border: 1px solid rgba(217, 119, 6, 0.4);
+            padding: 0.25rem 1rem;
+            font-size: 0.875rem;
+            display: inline-block;
+            margin-right: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+        .historical-mark {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .historical-mark::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: rgba(217, 119, 6, 0.4);
+        }
+        .contact-icon {
+            background-color: rgba(217, 119, 6, 0.1);
+            padding: 1rem;
+            border-radius: 100%;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        .contact-icon i {
+            color: #d97706;
+            font-size: 1.5rem;
+        }
+        .testimonial-card {
+            background-color: #0a0a0a;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+        .testimonial-quote::before {
+            content: """;
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            font-size: 6rem;
+            color: rgba(217, 119, 6, 0.1);
+            font-family: serif;
+            line-height: 1;
+        }
+        .btn-primary {
+            background-color: #b45309;
+            color: #f5f5f4;
+            padding: 1rem 2rem;
+            letter-spacing: 0.05em;
+            font-size: 0.875rem;
+            transition: all 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #92400e;
+        }
+        .link-amber {
+            color: #d97706;
+            transition: all 0.3s;
+            border-bottom: 1px solid rgba(217, 119, 6, 0.4);
+            padding-bottom: 0.25rem;
+            display: inline-flex;
+            align-items: center;
+        }
+        .link-amber:hover {
+            color: #f59e0b;
+        }
+        .link-amber i {
+            margin-left: 0.5rem;
+            font-size: 0.875rem;
+        }
+        .section-black {
+            background-color: #000000;
+        }
+        .section-dark {
+            background-color: #050505;
+        }
+        .gold-text {
+            color: #d4a045;
+        }
+        .gold-light {
+            color: #e9c46a;
+        }
+        .border-gold {
+            border-color: rgba(212, 160, 69, 0.3);
+        }
+        .quote-decoration {
+            width: 40px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(212, 160, 69, 0.6), transparent);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero-bg py-20 md:py-32 border-b border-amber-900/20">
+        <div class="container mx-auto px-6 md:px-12 flex flex-col items-center text-center">
+            <h1 class="text-5xl md:text-6xl font-light gold-text mb-3 tracking-wider">
+                三家の雫
+            </h1>
+            <div class="divider-center"></div>
+            <p class="text-xl md:text-2xl italic text-amber-500/90 mb-10 tracking-wide">
+                The best taste, proven by the history of noble families.
+            </p>
+            <p class="text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed">
+                紀州・尾張・井伊の屋敷跡という歴史ある土地と窒素を豊富に含んだ土壌で、
+                自然栽培により育ったオーガニックワイルドベリーを使った無添加ジャム
+            </p>
+            <div class="mb-16">
+                <button class="btn-primary">
+                    ご購入はこちら
+                </button>
+            </div>
+            <div class="bg-black p-6 rounded-sm shadow-2xl max-w-4xl mx-auto relative border border-amber-900/10">
+                <div class="frame-corner top-left"></div>
+                <div class="frame-corner top-right"></div>
+                <div class="frame-corner bottom-left"></div>
+                <div class="frame-corner bottom-right"></div>
+                <div class="relative">
+                    <img src="img/item2img.png" alt="Premium Wild Berry Jam" class="w-full mx-auto" style="max-height: 500px;" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- History Section -->
+    <div class="py-24 section-dark">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="flex flex-col md:flex-row items-center max-w-6xl mx-auto">
+                <div class="md:w-1/2 md:pr-12 mb-12 md:mb-0">
+                    <div class="relative">
+                        <div class="absolute inset-0 border border-amber-900/20 transform translate-x-4 translate-y-4"></div>
+                        <div class="bg-black relative z-10" style="padding-top: 125%;">
+                            <!-- Historical Image -->
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <p class="gold-text font-serif italic">Historical Residence Image</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-light mb-6 gold-text section-title">歴史と伝統の地</h2>
+                    <div class="divider"></div>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        紀尾井町の地名は、紀州徳川家、尾張徳川家、彦根井伊家の屋敷があったことに由来します。
+                        江戸時代から続くこの由緒ある土地は、長い歴史の中で培われた豊かな土壌と独特の微気候を持ち、
+                        稀少な野生のベリー類が自生する特別な環境を生み出しています。
+                    </p>
+                    <p class="text-gray-300 mb-8 leading-relaxed">
+                        三家の雫は、この貴重な土地で自然の恵みを受けて育った野イチゴを、
+                        伝統的な技法と現代の食品安全基準を融合させた方法で丁寧に加工した、
+                        唯一無二のプレミアムジャムです。
+                    </p>
+                    <a href="#" class="link-amber">
+                        歴史について詳しく
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Philosophy Section -->
+    <div class="py-24 section-black">
+        <div class="container mx-auto px-6 md:px-12 text-center max-w-4xl">
+            <h2 class="text-3xl font-light mb-6 gold-text section-title">私たちの哲学</h2>
+            <div class="divider-center"></div>
+            <p class="text-xl text-gray-300 mb-16 leading-relaxed">
+                「三家の雫」は歴史ある土地の恵みを最大限に活かし、自然と伝統、そして現代の技術を融合させることで、
+                一切の妥協なく最高の味わいをお届けすることを使命としています。
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mt-16">
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 flex items-center justify-center border border-amber-900/30 rounded-full mb-6">
+                        <div class="w-12 h-12 flex items-center justify-center bg-amber-900/10 rounded-full">
+                            <span class="gold-text">1</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-medium mb-3 gold-light">伝統と革新</h3>
+                    <p class="text-gray-400">江戸時代から続く土地の歴史を尊重しながら、現代の技術で最高の味わいを追求します。</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 flex items-center justify-center border border-amber-900/30 rounded-full mb-6">
+                        <div class="w-12 h-12 flex items-center justify-center bg-amber-900/10 rounded-full">
+                            <span class="gold-text">2</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-medium mb-3 gold-light">自然栽培</h3>
+                    <p class="text-gray-400">一切の農薬や化学肥料を使わず、土地本来の力を引き出す自然栽培にこだわります。</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 flex items-center justify-center border border-amber-900/30 rounded-full mb-6">
+                        <div class="w-12 h-12 flex items-center justify-center bg-amber-900/10 rounded-full">
+                            <span class="gold-text">3</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-medium mb-3 gold-light">贅沢な素材</h3>
+                    <p class="text-gray-400">希少な野生種のベリーのみを使用し、その風味を最大限に引き出します。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Products Section -->
+    <div class="py-24 section-dark">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-light mb-6 gold-text section-title">極上の逸品</h2>
+                <div class="divider-center"></div>
+                <p class="text-gray-300 max-w-2xl mx-auto">
+                    厳選された希少な野イチゴを、伝統的な小バッチ製法で心を込めて作り上げました。
+                    すべて手摘みされた実から、一瓶一瓶丁寧に仕上げています。
+                </p>
+            </div>
+
+            <!-- Product Tabs -->
+            <div class="flex justify-center mb-16 border-b border-amber-900/20">
+                <button class="tab-button active" data-tab="classic">伝統の味</button>
+                <button class="tab-button" data-tab="premium">極上の雫</button>
+                <button class="tab-button" data-tab="limited">季節限定</button>
+            </div>
+
+            <!-- Product Display -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+                <div class="relative">
+                    <div class="absolute inset-0 border border-amber-900/20 transform translate-x-4 translate-y-4"></div>
+                    <div class="bg-black relative z-10" style="padding-top: 100%;">
+                        <div class="tab-content active" id="classic-content">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="text-center p-12">
+                                    <p class="gold-text font-serif italic text-xl">伝統の味</p>
+                                    <p class="text-amber-700/40 mt-4">Premium jar image</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-content" id="premium-content">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="text-center p-12">
+                                    <p class="gold-text font-serif italic text-xl">極上の雫</p>
+                                    <p class="text-amber-700/40 mt-4">Luxury jar image</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-content" id="limited-content">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="text-center p-12">
+                                    <p class="gold-text font-serif italic text-xl">季節限定</p>
+                                    <p class="text-amber-700/40 mt-4">Limited edition jar image</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="tab-content active" id="classic-info">
+                        <h3 class="text-2xl font-light mb-4 gold-text">伝統の味</h3>
+                        <div class="divider"></div>
+                        <p class="text-gray-300 mb-6 leading-relaxed">
+                            紀尾井町に自生する野イチゴを伝統的な製法で煮詰めた定番の一品。砂糖は最小限に抑え、果実本来の甘みと酸味のバランスをお楽しみいただけます。朝食のトーストはもちろん、和菓子やチーズとの相性も抜群です。
+                        </p>
+                        <div class="mb-8">
+                            <span class="product-tag">無添加</span>
+                            <span class="product-tag">自然栽培</span>
+                            <span class="product-tag">少量生産</span>
+                            <span class="product-tag">手作り</span>
+                        </div>
+                        <div class="flex items-center mb-8">
+                            <p class="text-2xl font-light gold-light mr-4">¥3,800</p>
+                            <p class="text-gray-400 text-sm border-l border-amber-900/30 pl-4">100g / 限定生産200個</p>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="premium-info">
+                        <h3 class="text-2xl font-light mb-4 gold-text">極上の雫</h3>
+                        <div class="divider"></div>
+                        <p class="text-gray-300 mb-6 leading-relaxed">
+                            最高級の野イチゴのみを厳選し、一粒一粒手作業で丁寧に加工。琥珀糖で上品な甘さを加え、特製の陶器の瓶に詰めました。特別な日の贈り物や、大切な方へのギフトに最適です。数量限定生産のため、お早めにご予約ください。
+                        </p>
+                        <div class="mb-8">
+                            <span class="product-tag">無添加</span>
+                            <span class="product-tag">自然栽培</span>
+                            <span class="product-tag">少量生産</span>
+                            <span class="product-tag">手作り</span>
+                        </div>
+                        <div class="flex items-center mb-8">
+                            <p class="text-2xl font-light gold-light mr-4">¥6,500</p>
+                            <p class="text-gray-400 text-sm border-l border-amber-900/30 pl-4">80g / 限定生産100個</p>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="limited-info">
+                        <h3 class="text-2xl font-light mb-4 gold-text">季節限定 桜風味</h3>
+                        <div class="divider"></div>
+                        <p class="text-gray-300 mb-6 leading-relaxed">
+                            春の訪れとともに咲く桜の花から抽出したエッセンスを加えた季節限定品。ほのかな桜の香りと野イチゴの風味が絶妙に融合し、日本の春を感じる特別な味わいです。数量限定で毎年3月から4月のみの販売となります。
+                        </p>
+                        <div class="mb-8">
+                            <span class="product-tag">無添加</span>
+                            <span class="product-tag">自然栽培</span>
+                            <span class="product-tag">少量生産</span>
+                            <span class="product-tag">手作り</span>
+                        </div>
+                        <div class="flex items-center mb-8">
+                            <p class="text-2xl font-light gold-light mr-4">¥5,200</p>
+                            <p class="text-gray-400 text-sm border-l border-amber-900/30 pl-4">100g / 限定生産150個</p>
+                        </div>
+                    </div>
+                    <button class="btn-primary">
+                        ご予約はこちら
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Craftsmanship Section -->
+    <div class="py-24 section-black">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+                <div>
+                    <h2 class="text-3xl font-light mb-6 gold-text section-title">匠の技</h2>
+                    <div class="divider"></div>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        「三家の雫」は、素材の選定から製造、パッケージングに至るまで、すべての工程に確かな技術と深い愛情を注いでいます。
+                    </p>
+                    <div class="space-y-8">
+                        <div class="historical-mark">
+                            <h3 class="text-xl font-medium mb-2 gold-light">厳選された野イチゴ</h3>
+                            <p class="text-gray-400">紀尾井町の歴史ある土壌で育った野イチゴを、完熟した状態で一つ一つ手摘みします。</p>
+                        </div>
+                        <div class="historical-mark">
+                            <h3 class="text-xl font-medium mb-2 gold-light">伝統的な小バッチ製法</h3>
+                            <p class="text-gray-400">一度に少量ずつ丁寧に煮詰め、素材の持つ風味と栄養を最大限に引き出します。</p>
+                        </div>
+                        <div class="historical-mark">
+                            <h3 class="text-xl font-medium mb-2 gold-light">伝統と現代の融合</h3>
+                            <p class="text-gray-400">江戸時代から伝わる製法を基に、現代の食品安全基準に適合させた独自の製造方法を確立しました。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="absolute inset-0 border border-amber-900/20 transform translate-x-4 translate-y-4"></div>
+                    <div class="relative z-10 bg-black" style="padding-top: 133.33%;">
+                        <!-- Craftsmanship Image -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <p class="gold-text font-serif italic">Artisan craftsmanship image</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="py-24 section-dark">
+        <div class="container mx-auto px-6 md:px-12 text-center">
+            <h2 class="text-3xl font-light mb-6 gold-text section-title">お客様の声</h2>
+            <div class="divider-center"></div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto mt-16">
+                <div class="testimonial-card">
+                    <p class="text-gray-300 mb-6 relative z-10 italic leading-relaxed testimonial-quote">
+                        三家の雫は、野イチゴの風味が最大限に引き出された贅沢な一品です。朝食が特別な時間になりました。
+                    </p>
+                    <div class="quote-decoration mx-auto mb-4"></div>
+                    <p class="gold-light font-medium">料理評論家 山田 英子</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="text-gray-300 mb-6 relative z-10 italic leading-relaxed testimonial-quote">
+                        歴史ある土地から生まれたジャムの奥深い味わいに感動しました。贈り物として大変喜ばれています。
+                    </p>
+                    <div class="quote-decoration mx-auto mb-4"></div>
+                    <p class="gold-light font-medium">銀座 高級食材店オーナー 佐藤 剛</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="text-gray-300 mb-6 relative z-10 italic leading-relaxed testimonial-quote">
+                        素材の良さが感じられる上品な甘さと酸味。和菓子との相性も抜群で、お茶会で提供したところ皆様に絶賛いただきました。
+                    </p>
+                    <div class="quote-decoration mx-auto mb-4"></div>
+                    <p class="gold-light font-medium">茶道家元 鈴木 美香</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ordering Information -->
+    <div class="py-24 section-black">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-light mb-6 gold-text section-title">ご購入について</h2>
+                <div class="divider-center"></div>
+                <p class="text-gray-300 max-w-2xl mx-auto">
+                    「三家の雫」は少量生産のため、すべて予約制となっております。
+                    以下の方法でご注文いただけます。
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+                <div class="bg-black p-8 border border-amber-900/10">
+                    <h3 class="text-xl font-medium mb-6 gold-light flex items-center">
+                        <i class="fas fa-envelope mr-3 text-amber-600"></i>
+                        オンライン予約
+                    </h3>
+                    <p class="text-gray-300 mb-6">
+                        公式ウェブサイトからご予約いただけます。製造スケジュールに合わせて月に一度の販売となります。
+                    </p>
+                    <p class="text-gray-300 mb-6 flex items-center">
+                        <i class="fas fa-clock mr-2 text-amber-600"></i>
+                        <span>次回販売: 5月25日 正午12時</span>
+                    </p>
+                    <a href="#" class="link-amber">
+                        予約サイトへ
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="bg-black p-8 border border-amber-900/10">
+                    <h3 class="text-xl font-medium mb-6 gold-light flex items-center">
+                        <i class="fas fa-map-marker-alt mr-3 text-amber-600"></i>
+                        取扱店舗
+                    </h3>
+                    <p class="text-gray-300 mb-6">
+                        以下の厳選された高級食材店、百貨店でもお取り扱いしております。
+                    </p>
+                    <ul class="text-gray-300 mb-6 space-y-3">
+                        <li>• 日本橋高島屋 地下1階</li>
+                        <li>• 銀座三越 地下2階</li>
+                        <li>• 青山 フードアンティーク</li>
+                        <li>• 丸の内 DEAN & DELUCA</li>
+                    </ul>
+                    <a href="#" class="link-amber">
+                        店舗一覧
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="py-24 section-dark">
+        <div class="container mx-auto px-6 md:px-12 text-center">
+            <h2 class="text-3xl font-light mb-6 gold-text section-title">お問い合わせ</h2>
+            <div class="divider-center"></div>
+            <p class="text-gray-300 mb-12 max-w-2xl mx-auto">
+                ご質問やご相談、法人様向けの特別注文などについては、
+                下記の方法でお気軽にお問い合わせください。
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <div class="bg-black p-8 shadow-md flex flex-col items-center border border-amber-900/10">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 class="text-lg font-medium mb-2 gold-light">メール</h3>
+                    <p class="text-gray-400">info@mikenoshizuku.jp</p>
+                </div>
+                <div class="bg-black p-8 shadow-md flex flex-col items-center border border-amber-900/10">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3 class="text-lg font-medium mb-2 gold-light">お電話</h3>
+                    <p class="text-gray-400">03-XXXX-XXXX（平日10:00-17:00）</p>
+                </div>
+                <div class="bg-black p-8 shadow-md flex flex-col items-center border border-amber-900/10">
+                    <div class="contact-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <h3 class="text-lg font-medium mb-2 gold-light">Instagram</h3>
+                    <p class="text-gray-400">@mike_no_shizuku</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black text-stone-300 py-16 border-t border-amber-900/10">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-12">
+                <div class="mb-8 md:mb-0 text-center md:text-left">
+                    <h3 class="text-2xl font-light mb-2 gold-text">三家の雫</h3>
+                    <p class="text-amber-700/60 italic">The best taste, proven by the history of noble families.</p>
+                </div>
+                <div class="flex gap-8">
+                    <a href="#" class="text-amber-700 hover:text-amber-500 transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-amber-700 hover:text-amber-500 transition">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="#" class="text-amber-700 hover:text-amber-500 transition">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-900 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-700 text-sm mb-6 md:mb-0">
+                    &copy; 2025 三家の雫. All rights reserved.
+                </p>
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="#" class="text-gray-700 hover:text-amber-600 text-sm transition">
+                        プライバシーポリシー
+                    </a>
+                    <a href="#" class="text-gray-700 hover:text-amber-600 text-sm transition">
+                        特定商取引法に基づく表記
+                    </a>
+                    <a href="#" class="text-gray-700 hover:text-amber-600 text-sm transition">
+                        お問い合わせ
+                    </a>
+                    <a href="#" class="text-gray-700 hover:text-amber-600 text-sm transition">
+                        会社概要
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple tab functionality
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                
+                // Reset all tabs
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Activate clicked tab
+                button.classList.add('active');
+                document.getElementById(`${tabId}-content`).classList.add('active');
+                document.getElementById(`${tabId}-info`).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
